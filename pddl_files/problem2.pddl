@@ -1,66 +1,66 @@
 (define (problem military-race-2)
     (:domain military-race)
     (:objects
-        pos11
-        pos12
-        pos13
-        pos14
-        pos21
-        pos22
-        pos23
-        pos24
-        pos31
-        pos32
-        pos33
-        pos34
-        pos41
-        pos42
-        pos43
-        pos44
-        pos51
-        pos52
-        pos53
-        pos54
-        pos61
-        pos62
-        pos63
-        pos64
-        pos71
-        pos72
-        pos73
-        pos74
-        pos81
-        pos82
-        pos83
-        pos84
-        pos91
-        pos92
-        pos93
-        pos94
-        pos101
-        pos102
-        pos103
-        pos104
-        pos111
-        pos112
-        pos113
-        pos114
-        pos121
-        pos122
-        pos123
-        pos124
-        pos131
-        pos132
-        pos133
-        pos134
-        pos141
-        pos142
-        pos143
-        pos144
-        pos151
-        pos152
-        pos153
-        pos154
+        pos11 - position
+        pos12 - position
+        pos13 - position
+        pos14 - position
+        pos21 - position
+        pos22 - position
+        pos23 - position
+        pos24 - position
+        pos31 - position
+        pos32 - position
+        pos33 - position
+        pos34 - position
+        pos41 - position
+        pos42 - position
+        pos43 - position
+        pos44 - position
+        pos51 - position
+        pos52 - position
+        pos53 - position
+        pos54 - position
+        pos61 - position
+        pos62 - position
+        pos63 - position
+        pos64 - position
+        pos71 - position
+        pos72 - position
+        pos73 - position
+        pos74 - position
+        pos81 - position
+        pos82 - position
+        pos83 - position
+        pos84 - position
+        pos91 - position
+        pos92 - position
+        pos93 - position
+        pos94 - position
+        pos101 - position
+        pos102 - position
+        pos103 - position
+        pos104 - position
+        pos111 - position
+        pos112 - position
+        pos113 - position
+        pos114 - position
+        pos121 - position
+        pos122 - position
+        pos123 - position
+        pos124 - position
+        pos131 - position
+        pos132 - position
+        pos133 - position
+        pos134 - position
+        pos141 - position
+        pos142 - position
+        pos143 - position
+        pos144 - position
+        pos151 - position
+        pos152 - position
+        pos153 - position
+        pos154 - position
     )
 
     (:init

@@ -1,5 +1,9 @@
 (define (domain military-race)
 
+    (:types
+    position
+    )
+
     (:predicates (at ?pos) (adjacent ?pos1 ?pos2) (wall ?pos) (obstacle ?pos) (munition)
     )
     

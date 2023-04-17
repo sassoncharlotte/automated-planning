@@ -5,45 +5,45 @@
 (define (problem military-race-1)
     (:domain military-race)
     (:objects
-        pos11
-        pos12
-        pos13
-        pos14
+        pos11 - position
+        pos12 - position
+        pos13 - position
+        pos14 - position
         
-        pos21
-        pos22
-        pos23
-        pos24
+        pos21 - position
+        pos22 - position
+        pos23 - position
+        pos24 - position
         
-        pos31
-        pos32
-        pos33
-        pos34
+        pos31 - position
+        pos32 - position
+        pos33 - position
+        pos34 - position
         
-        pos41
-        pos42
-        pos43
-        pos44
+        pos41 - position
+        pos42 - position
+        pos43 - position
+        pos44 - position
         
-        pos51
-        pos52
-        pos53
-        pos54
+        pos51 - position
+        pos52 - position
+        pos53 - position
+        pos54 - position
         
-        pos61
-        pos62
-        pos63
-        pos64
+        pos61 - position
+        pos62 - position
+        pos63 - position
+        pos64 - position
         
-        pos71
-        pos72
-        pos73
-        pos74
+        pos71 - position
+        pos72 - position
+        pos73 - position
+        pos74 - position
         
-        pos81
-        pos82
-        pos83
-        pos84
+        pos81 - position
+        pos82 - position
+        pos83 - position
+        pos84 - position
     )
 
     (:init

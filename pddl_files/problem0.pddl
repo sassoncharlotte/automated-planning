@@ -1,29 +1,29 @@
 (define (problem military-race-0)
     (:domain military-race)
     (:objects
-        pos11
-        pos12
-        pos13
+        pos11 - position
+        pos12 - position
+        pos13 - position
 
-        pos21
-        pos22
-        pos23
+        pos21 - position
+        pos22 - position
+        pos23 - position
 
-        pos31
-        pos32
-        pos33
+        pos31 - position
+        pos32 - position
+        pos33 - position
 
-        pos41
-        pos42
-        pos43
+        pos41 - position
+        pos42 - position
+        pos43 - position
 
-        pos51
-        pos52
-        pos53
+        pos51 - position
+        pos52 - position
+        pos53 - position
 
-        pos61
-        pos62
-        pos63
+        pos61 - position
+        pos62 - position
+        pos63 - position
     )
 
     (:init
