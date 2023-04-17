@@ -4,8 +4,8 @@ from parser_files.pddlparser import PDDLParser
 from a_star_algorithm import a_star
 
 parser = PDDLParser()
-domain = parser.parse('pddl_files/domain.pddl')
-problem = parser.parse('pddl_files/problem0.pddl')
+domain = parser.parse('pddl_files/groupe1/domain.pddl')
+problem = parser.parse('pddl_files/groupe1/problem0.pddl')
 
 start = time()
 plan = a_star(domain, problem)
