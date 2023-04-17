@@ -4,7 +4,7 @@ Classes and functions for creating a problem object
 
 from itertools import product
 
-import domain
+from parser_files import domain
 
 ###############################################################################
 # PROBLEM CLASS
