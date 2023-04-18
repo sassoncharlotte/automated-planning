@@ -5,8 +5,10 @@ from a_star_algorithm import AStar
 
 
 ###########################################################
-DOMAIN = 'pddl_files/groupe2/domain.pddl'
-PROBLEM = 'pddl_files/groupe2/problem_easy.pddl'
+DOMAIN = 'pddl_files/groupe1/domain.pddl'
+PROBLEM = 'pddl_files/groupe1/problem0.pddl'
+HEURISTIC_NAME = "sum_of_subgoals"
+# Among: "null_heuristic", "sum_of_subgoals", "predicates_difference", "hamming_distance", "max_proposition"
 ###########################################################
 
 parser = PDDLParser()
@@ -17,7 +19,7 @@ a_star = AStar(domain=domain, problem=problem)
 
 start = time()
 # A* algorithm
-plan = a_star.a_star_algorithm(heuristic_name="null_heuristic")
+plan = a_star.a_star_algorithm(heuristic_name=HEURISTIC_NAME)
 end = time()
 total_time = round(end - start, 2)
 

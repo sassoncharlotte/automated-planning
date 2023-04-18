@@ -146,6 +146,9 @@ class AStar:
         state = State(predicates=initial_predicates, cost=0, heuristic=0)
         goals = State(predicates=self.problem.goals, cost=0, heuristic=0)
 
+        # print(state.predicates, "\n")
+        # print(self.problem.goals, "\n")
+
         open_list.append(state)
 
         while len(open_list) > 0:
