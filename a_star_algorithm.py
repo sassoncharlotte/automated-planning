@@ -1,6 +1,4 @@
 import itertools
-from heuristics import Heuristics
-
 
 
 def plan_cost(plan):
