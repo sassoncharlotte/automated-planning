@@ -5,9 +5,9 @@ from a_star_algorithm import AStar
 
 
 ###########################################################
-DOMAIN = 'pddl_files/groupe1/domain.pddl'
-PROBLEM = 'pddl_files/groupe1/problem0.pddl'
-HEURISTIC_NAME = "sum_of_subgoals"
+DOMAIN = 'pddl_files/groupe4/domain.pddl'
+PROBLEM = 'pddl_files/groupe4/problem0.pddl'
+HEURISTIC_NAME = "null_heuristic"
 # Among: "null_heuristic", "sum_of_subgoals", "predicates_difference", "hamming_distance", "max_proposition"
 ###########################################################
 
@@ -59,5 +59,3 @@ for i, state in enumerate(plan):
 #  ('at', 'pos21')
 # Step 9:
 #  ('at', 'pos11')
-
-
