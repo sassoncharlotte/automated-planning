@@ -3,20 +3,26 @@ from time import time
 from parser_files.pddlparser import PDDLParser
 from a_star_algorithm import AStar
 
+
+###########################################################
+DOMAIN = 'pddl_files/groupe2/domain.pddl'
+PROBLEM = 'pddl_files/groupe2/problem_easy.pddl'
+###########################################################
+
 parser = PDDLParser()
-domain = parser.parse('pddl_files/groupe2/domain.pddl')
-problem = parser.parse('pddl_files/groupe2/problem2.pddl')
+domain = parser.parse(DOMAIN)
+problem = parser.parse(PROBLEM)
 
 a_star = AStar(domain=domain, problem=problem)
 
 start = time()
+# A* algorithm
 plan = a_star.a_star_algorithm(heuristic_name="null_heuristic")
 end = time()
 total_time = round(end - start, 2)
 
 minutes = total_time // 60
 seconds = total_time % 60
-
 
 print(f"\nComputed in {int(minutes)} min {seconds}s\n")
 print("-- Plan --")
