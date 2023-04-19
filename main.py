@@ -7,7 +7,7 @@ from a_star_algorithm import AStar
 ###########################################################
 DOMAIN = 'pddl_files/groupe2/domain.pddl'
 PROBLEM = 'pddl_files/groupe2/problem0.pddl'
-HEURISTIC_NAME = "monotone"
+HEURISTIC_NAME = "null_heuristic"
 # Among: "null_heuristic", "sum_of_subgoals", "hamming_distance", "max_proposition", "monotone"
 ###########################################################
 
