@@ -88,6 +88,10 @@ class AStar:
             }
             for candidate in ( (dict(zip(possible_values, x)) for x in itertools.product(*possible_values.values()) )):
                 action_is_valid = True
+                # If no preconditions
+                if not action.preconditions.literals[0]:
+                    actions.append((action, candidate))
+                    continue
                 for precond in action.preconditions.literals:
                     # Negative predicate
                     if precond[0]==-1:
@@ -108,7 +112,7 @@ class AStar:
         return actions
 
 
-    def get_neighbors(self, current_state):
+    def get_neighbors(self, current_state, monotone=False):
         """
         Gives the list of all reachable states from current_state
         Arguments:
@@ -125,29 +129,34 @@ class AStar:
             state = current_state.copy()
             action_function, candidate = action
             for predicate in action_function.effects.literals:
-                if predicate[0]==-1:
-                    neg_value_predicate = get_value_predicate(predicate[1], candidate)
-                    if neg_value_predicate in state:
-                        state.remove(neg_value_predicate)
-                        state.append((-1, neg_value_predicate))
+                if not monotone:
+                    if predicate[0]==-1:
+                        neg_value_predicate = get_value_predicate(predicate[1], candidate)
+                        if neg_value_predicate in state:
+                            state.remove(neg_value_predicate)
+                            state.append((-1, neg_value_predicate))
+                    else:
+                        value_predicate = get_value_predicate(predicate, candidate)
+                        if value_predicate not in state:
+                            state.append(value_predicate)
                 else:
-                    value_predicate = get_value_predicate(predicate, candidate)
-                    if value_predicate not in state:
-                        state.append(value_predicate)
+                    if predicate[0]!=-1:
+                        value_predicate = get_value_predicate(predicate, candidate)
+                        if value_predicate not in state:
+                            state.append(value_predicate)
             states.append(state)
         return states
 
 
-    def a_star_algorithm(self, heuristic_name):
+    def a_star_algorithm(self, heuristic_name, state=None, monotone=False):
         """ A* algorithm """
         closed_list, open_list = [], []
         initial_predicates, self.constant_predicates = self.get_initial_predicate_lists()
 
-        state = State(predicates=initial_predicates, cost=0, heuristic=0)
-        goals = State(predicates=self.problem.goals, cost=0, heuristic=0)
+        if not state:
+            state = State(predicates=initial_predicates, cost=0, heuristic=0)
 
-        # print(state.predicates, "\n")
-        # print(self.problem.goals, "\n")
+        goals = State(predicates=self.problem.goals, cost=0, heuristic=0)
 
         open_list.append(state)
 
@@ -158,12 +167,12 @@ class AStar:
             if state_contains_goal(goals.predicates, u.predicates, self.constant_predicates):
                 return reconstruct_path(u)
 
-            for v in self.get_neighbors(u.predicates):
+            for v in self.get_neighbors(u.predicates, monotone):
                 v = State(predicates=v, cost=0, heuristic=0)
                 v.parent = u
                 if v not in closed_list and v not in open_list:
                     v.cost = u.cost + 1
-                    v.heuristic = v.cost + self.distance(v.predicates, goals.predicates, heuristic_name)
+                    v.heuristic = v.cost + self.distance(v, goals, heuristic_name)
                     open_list.append(v)
             closed_list.append(u)
         raise ValueError("No path found")
@@ -174,17 +183,20 @@ class AStar:
         if heuristic_name == 'null_heuristic':
             distance = 0
 
-        # if heuristic_name == 'monotone':
-        #     monotone_plan = a_star(domain, problem, heuristic_name='null_heuristic', state=state, monotone=True)
-        #     distance = plan_cost(monotone_plan)
+        if heuristic_name == 'monotone':
+            monotone_plan = self.a_star_algorithm(heuristic_name='null_heuristic', state=state, monotone=True)
+            distance = plan_cost(monotone_plan)
 
         if heuristic_name=="hamming_distance":
-            distance = sum(s != g for s, g in zip(state, goal))
-
-        if heuristic_name=="num_predicates_difference":
-            distance = abs(len(state) - len(goal))
+            distance = sum(s != g for s, g in zip(state.predicates, goal.predicates))
 
         if heuristic_name=="sum_of_subgoals":
+            # Computes the number of remaining subgoals that need to be achieved 
+            # in order to reach the goal state.
+            # This assumes that subgoals that are closer to the goal state 
+            # are more likely to lead to a shorter plan. """
+            state = state.predicates
+            goal = goal.predicates
             subgoals = [g for g in goal if g not in state]
             distance = 0
             while subgoals:
@@ -200,6 +212,12 @@ class AStar:
                 subgoals = [g for g in subgoals if g not in state]
 
         if heuristic_name=="max_proposition":
+            # Computes the number of propositions that must be set 
+            # in order to achieve any of the goal propositions.
+            # It assumes that setting propositions that are closer
+            # to the goal state will lead to a shorter plan.
+            state = state.predicates
+            goal = goal.predicates
             max_propositions = 0
             for prop in goal:
                 visited = [set()]
