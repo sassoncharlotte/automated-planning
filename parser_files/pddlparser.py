@@ -349,7 +349,9 @@ def p_precond_def(p):
 
     (literals, universal, existential) = ([], [], [])
     for d in prec:
-        if 'FORALL_KEY' in d:
+        if not d:
+            literals.append(d)
+        elif 'FORALL_KEY' in d:
             universal.append(tuple(d[1:]))
         elif 'EXISTS_KEY' in d:
             existential.append(tuple(d[1:]))
