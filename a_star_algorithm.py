@@ -181,7 +181,7 @@ class AStar:
         if heuristic_name=="hamming_distance":
             distance = sum(s != g for s, g in zip(state, goal))
 
-        if heuristic_name=="predicates_difference":
+        if heuristic_name=="num_predicates_difference":
             distance = abs(len(state) - len(goal))
 
         if heuristic_name=="sum_of_subgoals":
@@ -205,12 +205,13 @@ class AStar:
                 visited = [set()]
                 queue = [(state, 0)]
                 while queue:
-                    current, distance = queue.pop(0)
+                    current, dist = queue.pop(0)
                     if prop in current:
-                        max_propositions = max(max_propositions, distance)
+                        max_propositions = max(max_propositions, dist)
                         break
                     visited.append(current)
                     for successor in self.get_neighbors(current):
                         if successor not in visited:
-                            queue.append((successor, distance + 1))
+                            queue.append((successor, dist + 1))
+            distance = max_propositions
         return distance
