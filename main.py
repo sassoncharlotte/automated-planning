@@ -6,9 +6,9 @@ from a_star_algorithm import AStar
 
 ###########################################################
 DOMAIN = 'pddl_files/groupe2/domain.pddl'
-PROBLEM = 'pddl_files/groupe2/problem1.pddl'
-HEURISTIC_NAME = "null_heuristic"
-# Among: "null_heuristic", "sum_of_subgoals", "num_predicates_difference", "hamming_distance", "max_proposition"
+PROBLEM = 'pddl_files/groupe2/problem0.pddl'
+HEURISTIC_NAME = "monotone"
+# Among: "null_heuristic", "sum_of_subgoals", "hamming_distance", "max_proposition", "monotone"
 ###########################################################
 
 parser = PDDLParser()
